@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ravel Vieira — QA Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafafa;
+      --fg: #111111;
+      --muted: #666666;
+      --accent: #1a1a1a;
+      --border: #e5e5e5;
+      --tag-bg: #f0f0f0;
+      --tag-fg: #333333;
+      --max: 720px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,250,250,0.88);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo {
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      color: var(--fg);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--fg); }
+
+    /* ── LAYOUT ── */
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 96px 0 64px;
+    }
+
+    section + section {
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 140px;
+      padding-bottom: 96px;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--tag-bg);
+      margin-top: 8px;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--muted);
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 52px);
+      font-weight: 600;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      color: var(--fg);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--fg);
+      color: var(--bg);
+    }
+
+    .btn-primary:hover {
+      background: #333;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: #999;
+      background: #f5f5f5;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-facts {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .fact {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: white;
+    }
+
+    .fact-number {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -1px;
+      color: var(--fg);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .fact-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .skill-group h3 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 13px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      font-weight: 400;
+    }
+
+    .tag-highlight {
+      background: var(--fg);
+      color: var(--bg);
+      font-weight: 500;
+    }
+
+    /* ── EXPERIENCE TIMELINE ── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Company block */
+    .tl-company {
+      display: flex;
+      gap: 16px;
+      position: relative;
+    }
+
+    .tl-company + .tl-company {
+      margin-top: 32px;
+    }
+
+    /* Left column: logo + vertical line */
+    .tl-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 44px;
+    }
+
+    .tl-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--fg);
+      flex-shrink: 0;
+      z-index: 1;
+      letter-spacing: -0.5px;
+    }
+
+    .tl-line {
+      width: 1px;
+      background: var(--border);
+      flex: 1;
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+
+    /* Right column: content */
+    .tl-right {
+      flex: 1;
+      padding-bottom: 8px;
+    }
+
+    .tl-company-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--fg);
+      line-height: 44px; /* align with logo */
+      margin-bottom: 20px;
+    }
+
+    .tl-company-meta {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 44px;
+    }
+
+    .tl-company-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    /* Roles within a company */
+    .tl-roles {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-role {
+      display: flex;
+      gap: 14px;
+      position: relative;
+    }
+
+    .tl-role + .tl-role {
+      margin-top: 0;
+    }
+
+    /* Role left: dot + inner line */
+    .tl-role-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 16px;
+    }
+
+    .tl-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      flex-shrink: 0;
+      margin-top: 5px;
+      z-index: 1;
+    }
+
+    .tl-role-line {
+      width: 1px;
+      background: var(--border);
+      flex: 1;
+      margin-top: 4px;
+    }
+
+    .tl-role:last-child .tl-role-line {
+      display: none;
+    }
+
+    /* Role content */
+    .tl-role-content {
+      flex: 1;
+      padding-bottom: 24px;
+    }
+
+    .tl-role:last-child .tl-role-content {
+      padding-bottom: 0;
+    }
+
+    .tl-role-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .tl-role-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--fg);
+      line-height: 1.3;
+    }
+
+    .tl-role-period {
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .tl-role-meta {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .tl-sep {
+      color: var(--border);
+      font-size: 10px;
+    }
+
+    .tl-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .tl-bullets li {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      display: flex;
+      gap: 8px;
+    }
+
+    .tl-bullets li::before {
+      content: '·';
+      color: #bbb;
+      flex-shrink: 0;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .project-item {
+      background: white;
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .project-item:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-item:hover { background: #f8f8f8; }
+
+    .project-title {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--fg);
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .project-tag {
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 3px;
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 7px 14px;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .project-link:hover {
+      color: var(--fg);
+      border-color: #999;
+    }
+
+    /* ── CONTACT ── */
+    .contact-intro {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 40px;
+      max-width: 440px;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 440px;
+    }
+
+    .contact-item {
+      background: white;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--fg);
+      transition: background 0.15s;
+    }
+
+    .contact-item:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:hover { background: #f8f8f8; }
+
+    .contact-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--tag-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-value {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-arrow {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.55s ease forwards;
+    }
+
+    .fade-up:nth-child(1) { animation-delay: 0.05s; }
+    .fade-up:nth-child(2) { animation-delay: 0.15s; }
+    .fade-up:nth-child(3) { animation-delay: 0.25s; }
+    .fade-up:nth-child(4) { animation-delay: 0.35s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav ul { gap: 18px; }
+      nav ul li:nth-child(3), nav ul li:nth-child(4) { display: none; }
+
+      #hero { padding-top: 100px; }
+
+      .hero-inner { flex-direction: column; gap: 24px; align-items: flex-start; }
+      .hero-photo { width: 88px; height: 88px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+
+      .skills-grid { grid-template-columns: 1fr; }
+
+      .project-item { grid-template-columns: 1fr; }
+      .project-link { width: fit-content; }
+
+      .tl-role-header { flex-direction: column; gap: 2px; }
+      .tl-role-period { font-size: 11px; }
+      .tl-company-header { flex-direction: column; gap: 0; }
+
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="inner">
+      <a href="#hero" class="logo">Ravel Vieira</a>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-photo fade-up">
+          <img src="https://media.licdn.com/dms/image/v2/D4D03AQH6goRv2wADtg/profile-displayphoto-crop_800_800/B4DZ0_MxZNGcAI-/0/1774881820158?e=1778716800&v=beta&t=dvXx-cDTO3PNd_ZWOoEtkRsOIq3A6CzNzFofuMc2RfM" alt="Ravel Medeiros" />
+        </div>
+        <div class="hero-text">
+          <div class="eyebrow fade-up">Disponível para novas oportunidades</div>
+          <h1 class="fade-up">QA Engineer<br>focado em qualidade<br>e automação.</h1>
+          <p class="hero-desc fade-up">
+            Construo pipelines de testes robustos, encontro bugs antes do usuário e ajudo times a entregar software com mais confiança.
+          </p>
+          <div class="hero-actions fade-up">
+            <a href="#contato" class="btn btn-primary">Entre em contato</a>
+            <a href="#projetos" class="btn btn-outline">Ver projetos →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+      <p class="section-label">Sobre mim</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Sou um QA Engineer apaixonado por qualidade de software, com experiência em testes manuais e automatizados em ambientes ágeis.
+          </p>
+          <p>
+            Trabalho próximo dos times de desenvolvimento desde o início dos sprints, integrando qualidade ao processo e não apenas ao final — shift-left testing na prática.
+          </p>
+          <p>
+            Acredito que bons testes não são somente sobre encontrar bugs, mas sobre construir sistemas confiáveis e times que dormem tranquilos.
+          </p>
+        </div>
+        <div class="about-facts">
+          <div class="fact">
+            <div class="fact-number">3+</div>
+            <div class="fact-label">Anos de experiência em QA</div>
+          </div>
+          <div class="fact">
+            <div class="fact-number">350+</div>
+            <div class="fact-label">Testes automatizados escritos</div>
+          </div>
+          <div class="fact">
+            <div class="fact-number">95%</div>
+            <div class="fact-label">Taxa de aprovação nos testes E2E</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <p class="section-label">Habilidades</p>
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <h3>Automação — dia a dia</h3>
+          <div class="tags">
+            <span class="tag tag-highlight">Cypress</span>
+            <span class="tag tag-highlight">Playwright</span>
+            <span class="tag">Postman</span>
+            <span class="tag">Newman</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Linguagens</h3>
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>CI/CD & Tools</h3>
+          <div class="tags">
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">Azure DevOps</span>
+            <span class="tag">Jira</span>
+            <span class="tag">Git</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Metodologias</h3>
+          <div class="tags">
+            <span class="tag">Scrum</span>
+            <span class="tag">BDD</span>
+            <span class="tag">Shift-Left Testing</span>
+            <span class="tag">UAT</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Tipos de Teste</h3>
+          <div class="tags">
+            <span class="tag">E2E</span>
+            <span class="tag">Regressão</span>
+            <span class="tag">Exploratório</span>
+            <span class="tag">API</span>
+            <span class="tag">Smoke</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <h3>Banco de Dados</h3>
+          <div class="tags">
+            <span class="tag">SQL</span>
+            <span class="tag">Validação de dados</span>
+            <span class="tag">JSON Schema</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIÊNCIA -->
+    <section id="experiencia">
+      <p class="section-label">Experiência</p>
+      <div class="timeline">
+
+        <!-- ── meutudo. ── -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-logo">t</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-company-header">
+              <div class="tl-company-name">meutudo.</div>
+              <div class="tl-company-meta">1 ano e 7 meses</div>
+            </div>
+
+            <div class="tl-roles">
+
+              <!-- Software Engineer in Test -->
+              <div class="tl-role">
+                <div class="tl-role-left">
+                  <div class="tl-dot"></div>
+                  <div class="tl-role-line"></div>
+                </div>
+                <div class="tl-role-content">
+                  <div class="tl-role-header">
+                    <div class="tl-role-title">Software Engineer in Test</div>
+                    <div class="tl-role-period">Jan 2025 — Presente · 1 a 4 m</div>
+                  </div>
+                  <div class="tl-role-meta">
+                    Full-time <span class="tl-sep">·</span> Remote <span class="tl-sep">·</span> Fortaleza, CE
+                  </div>
+                  <ul class="tl-bullets">
+                    <li>150+ testes automatizados com Cypress e Playwright, atingindo 95% de taxa de aprovação em cenários E2E e integração.</li>
+                    <li>Automação de API com Postman, validando regras de negócio e tratamento de erros em 30+ endpoints.</li>
+                    <li>Shift-left testing em sprints Agile, colaborando com devs para reduzir bugs em produção em 15%.</li>
+                    <li>Portal de dados de teste que reduziu o tempo de preparação em 60%, melhorando eficiência do time.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- QA Engineer -->
+              <div class="tl-role">
+                <div class="tl-role-left">
+                  <div class="tl-dot"></div>
+                  <div class="tl-role-line"></div>
+                </div>
+                <div class="tl-role-content">
+                  <div class="tl-role-header">
+                    <div class="tl-role-title">QA Engineer</div>
+                    <div class="tl-role-period">Out 2024 — Jan 2025 · 4 m</div>
+                  </div>
+                  <div class="tl-role-meta">
+                    Full-time <span class="tl-sep">·</span> Remote <span class="tl-sep">·</span> Fortaleza, CE
+                  </div>
+                  <ul class="tl-bullets">
+                    <li>Testes E2E e de integração com Cypress e Playwright, garantindo qualidade em releases contínuos.</li>
+                    <li>Testes de API com Postman para validação de contratos e comportamentos de erro.</li>
+                    <li>Colaboração direta com produto e engenharia no processo de QA shift-left.</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Agenda Assessoria ── -->
+        <div class="tl-company">
+          <div class="tl-left">
+            <div class="tl-logo" style="background:#1a2a6c;color:white;font-size:13px;">AA</div>
+            <div class="tl-line"></div>
+          </div>
+          <div class="tl-right">
+            <div class="tl-company-header">
+              <div class="tl-company-name">Agenda Assessoria</div>
+              <div class="tl-company-meta">1 ano e 7 meses</div>
+            </div>
+
+            <div class="tl-roles">
+
+              <!-- QA Engineer -->
+              <div class="tl-role">
+                <div class="tl-role-left">
+                  <div class="tl-dot"></div>
+                  <div class="tl-role-line"></div>
+                </div>
+                <div class="tl-role-content">
+                  <div class="tl-role-header">
+                    <div class="tl-role-title">QA Engineer</div>
+                    <div class="tl-role-period">Abr 2023 — Out 2024 · 1 a 7 m</div>
+                  </div>
+                  <div class="tl-role-meta">
+                    Full-time <span class="tl-sep">·</span> On-site <span class="tl-sep">·</span> Cuiabá, MT
+                  </div>
+                  <ul class="tl-bullets">
+                    <li>Testes exploratórios, regressão, smoke e UAT em 5+ sistemas internos, garantindo qualidade nas entregas.</li>
+                    <li>Framework Cypress que aumentou a cobertura de regressão de 20% para 70%.</li>
+                    <li>200+ casos de teste e documentação de QA alinhada aos requisitos de negócio.</li>
+                    <li>Testes de API e validação SQL, identificando 40+ defeitos críticos antes da produção.</li>
+                    <li>Gestão de defeitos no Azure DevOps, reduzindo tempo médio de resolução em 30%.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Product Designer -->
+              <div class="tl-role">
+                <div class="tl-role-left">
+                  <div class="tl-dot"></div>
+                  <div class="tl-role-line"></div>
+                </div>
+                <div class="tl-role-content">
+                  <div class="tl-role-header">
+                    <div class="tl-role-title">Product Designer</div>
+                    <div class="tl-role-period">Set 2023 — Jun 2024 · 10 m</div>
+                  </div>
+                  <div class="tl-role-meta">
+                    Full-time <span class="tl-sep">·</span> On-site <span class="tl-sep">·</span> Cuiabá, MT
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+      <p class="section-label">Projetos</p>
+      <div class="projects-list">
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Framework de Automação E2E</div>
+            <div class="project-desc">
+              Framework de testes end-to-end com Playwright e TypeScript, cobrindo fluxos críticos de uma aplicação web de e-commerce. Integrado ao GitHub Actions com relatórios automáticos no Allure.
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Playwright</span>
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">GitHub Actions</span>
+              <span class="project-tag">Allure</span>
+            </div>
+          </div>
+          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
+            Ver projeto →
+          </a>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Testes de API com Postman + Newman</div>
+            <div class="project-desc">
+              Suíte de testes para uma API REST com mais de 200 casos de teste, validação de contratos com JSON Schema e execução automatizada no pipeline de CI. Cobertura de endpoints críticos, autenticação e tratamento de erros.
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Postman</span>
+              <span class="project-tag">Newman</span>
+              <span class="project-tag">JSON Schema</span>
+              <span class="project-tag">Jenkins</span>
+            </div>
+          </div>
+          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
+            Ver projeto →
+          </a>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Testes de Performance com K6</div>
+            <div class="project-desc">
+              Scripts de carga e stress testing para identificar gargalos em uma aplicação SaaS. Simulação de até 5.000 usuários simultâneos com relatórios de latência, throughput e percentis de resposta.
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">K6</span>
+              <span class="project-tag">JavaScript</span>
+              <span class="project-tag">Grafana</span>
+              <span class="project-tag">InfluxDB</span>
+            </div>
+          </div>
+          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
+            Ver projeto →
+          </a>
+        </div>
+
+        <div class="project-item">
+          <div>
+            <div class="project-title">Automação Mobile com Appium</div>
+            <div class="project-desc">
+              Suite de testes automatizados para aplicativo móvel iOS e Android usando Appium + Python. Cobertura dos principais fluxos de onboarding, checkout e perfil de usuário.
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Appium</span>
+              <span class="project-tag">Python</span>
+              <span class="project-tag">iOS</span>
+              <span class="project-tag">Android</span>
+            </div>
+          </div>
+          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
+            Ver projeto →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+      <p class="section-label">Contato</p>
+      <p class="contact-intro">
+        Aberto a conversas sobre novas oportunidades, projetos freelance ou colaborações. Fique à vontade para entrar em contato.
+      </p>
+      <div class="contact-links">
+
+        <a href="mailto:ravel.medeiro@gmail.com" class="contact-item">
+          <div class="contact-left">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-label">E-mail</div>
+              <div class="contact-value">ravel.medeiro@gmail.com</div>
+            </div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="https://www.linkedin.com/in/ravel-medeiros/" class="contact-item" target="_blank">
+          <div class="contact-left">
+            <div class="contact-icon">💼</div>
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">linkedin.com/in/ravel-medeiros</div>
+            </div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+
+        <a href="https://github.com/RavelMedeiros" class="contact-item" target="_blank">
+          <div class="contact-left">
+            <div class="contact-icon">🐙</div>
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">github.com/RavelMedeiros</div>
+            </div>
+          </div>
+          <span class="contact-arrow">→</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 Ravel Vieira</span>
+    <span>QA Engineer</span>
+  </footer>
+
+</body>
+</html>
