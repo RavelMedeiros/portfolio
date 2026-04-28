@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ravel Vieira — QA Engineer</title>
+  <title>YOUR NEXT QA!</title>
+  <link rel="icon" type="image/jpeg" href="https://media.licdn.com/dms/image/v2/D4D03AQH6goRv2wADtg/profile-displayphoto-crop_800_800/B4DZ0_MxZNGcAI-/0/1774881820158?e=1778716800&v=beta&t=dvXx-cDTO3PNd_ZWOoEtkRsOIq3A6CzNzFofuMc2RfM" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -18,10 +19,24 @@
       --border: #e5e5e5;
       --tag-bg: #f0f0f0;
       --tag-fg: #333333;
+      --card-bg: #ffffff;
       --max: 720px;
     }
 
+    html.dark {
+      --bg: #0f0f0f;
+      --fg: #ececec;
+      --muted: #888888;
+      --accent: #ececec;
+      --border: #272727;
+      --tag-bg: #1e1e1e;
+      --tag-fg: #cccccc;
+      --card-bg: #161616;
+    }
+
     html { scroll-behavior: smooth; }
+
+    html, body { transition: background 0.25s, color 0.25s; }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -40,7 +55,38 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-bottom: 1px solid var(--border);
+      transition: background 0.25s, border-color 0.25s;
     }
+
+    html.dark nav {
+      background: rgba(15,15,15,0.88);
+    }
+
+    /* ── DARK MODE TOGGLE ── */
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      flex-shrink: 0;
+      margin-left: 16px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--fg);
+      border-color: var(--fg);
+    }
+
+    .icon-sun, .icon-moon { display: none; }
+    html:not(.dark) .icon-sun { display: block; }
+    html.dark .icon-moon { display: block; }
 
     nav .inner {
       max-width: var(--max);
@@ -239,7 +285,7 @@
       padding: 20px;
       border: 1px solid var(--border);
       border-radius: 8px;
-      background: white;
+      background: var(--card-bg);
     }
 
     .fact-number {
@@ -325,7 +371,7 @@
       height: 44px;
       border-radius: 8px;
       border: 1px solid var(--border);
-      background: white;
+      background: var(--card-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -502,7 +548,7 @@
     }
 
     .project-item {
-      background: white;
+      background: var(--card-bg);
       padding: 28px 32px;
       display: grid;
       grid-template-columns: 1fr auto;
@@ -581,7 +627,7 @@
     }
 
     .contact-item {
-      background: white;
+      background: var(--card-bg);
       padding: 18px 24px;
       display: flex;
       align-items: center;
@@ -611,8 +657,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
       flex-shrink: 0;
+      color: var(--fg);
     }
 
     .contact-label {
@@ -666,8 +712,13 @@
 
       #hero { padding-top: 100px; }
 
-      .hero-inner { flex-direction: column; gap: 24px; align-items: flex-start; }
-      .hero-photo { width: 88px; height: 88px; }
+      .hero-inner { flex-direction: column; gap: 28px; align-items: flex-start; }
+      .hero-photo {
+        order: -1;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+      }
 
       .about-grid { grid-template-columns: 1fr; gap: 32px; }
 
@@ -691,11 +742,15 @@
     <div class="inner">
       <a href="#hero" class="logo">Ravel Vieira</a>
       <ul>
-        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#sobre">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#experiencia">Experiência</a></li>
-        <li><a href="#contato">Contato</a></li>
+        <li><a href="#experiencia">Experience</a></li>
+        <li><a href="#contato">Contact</a></li>
       </ul>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
     </div>
   </nav>
 
@@ -704,50 +759,50 @@
     <!-- HERO -->
     <section id="hero">
       <div class="hero-inner">
-        <div class="hero-photo fade-up">
-          <img src="https://media.licdn.com/dms/image/v2/D4D03AQH6goRv2wADtg/profile-displayphoto-crop_800_800/B4DZ0_MxZNGcAI-/0/1774881820158?e=1778716800&v=beta&t=dvXx-cDTO3PNd_ZWOoEtkRsOIq3A6CzNzFofuMc2RfM" alt="Ravel Medeiros" />
-        </div>
         <div class="hero-text">
-          <div class="eyebrow fade-up">Disponível para novas oportunidades</div>
-          <h1 class="fade-up">QA Engineer<br>focado em qualidade<br>e automação.</h1>
+          <div class="eyebrow fade-up">Open to new opportunities</div>
+          <h1 class="fade-up">QA Engineer<br>focused on quality<br>and automation.</h1>
           <p class="hero-desc fade-up">
-            Construo pipelines de testes robustos, encontro bugs antes do usuário e ajudo times a entregar software com mais confiança.
+            I build robust test pipelines, catch bugs before users do, and help teams ship software with confidence.
           </p>
           <div class="hero-actions fade-up">
-            <a href="#contato" class="btn btn-primary">Entre em contato</a>
-            <a href="#projetos" class="btn btn-outline">Ver projetos →</a>
+            <a href="#contato" class="btn btn-primary">Get in touch</a>
+            <a href="#projetos" class="btn btn-outline">View projects →</a>
           </div>
+        </div>
+        <div class="hero-photo fade-up">
+          <img src="https://media.licdn.com/dms/image/v2/D4D03AQH6goRv2wADtg/profile-displayphoto-crop_800_800/B4DZ0_MxZNGcAI-/0/1774881820158?e=1778716800&v=beta&t=dvXx-cDTO3PNd_ZWOoEtkRsOIq3A6CzNzFofuMc2RfM" alt="Ravel Medeiros" />
         </div>
       </div>
     </section>
 
-    <!-- SOBRE -->
+    <!-- ABOUT -->
     <section id="sobre">
-      <p class="section-label">Sobre mim</p>
+      <p class="section-label">About</p>
       <div class="about-grid">
         <div class="about-text">
           <p>
-            Sou um QA Engineer apaixonado por qualidade de software, com experiência em testes manuais e automatizados em ambientes ágeis.
+            I'm a QA Engineer passionate about software quality, with hands-on experience in both manual and automated testing in agile environments.
           </p>
           <p>
-            Trabalho próximo dos times de desenvolvimento desde o início dos sprints, integrando qualidade ao processo e não apenas ao final — shift-left testing na prática.
+            I work closely with development teams from the start of each sprint, embedding quality into the process — not just at the end. Shift-left testing in practice.
           </p>
           <p>
-            Acredito que bons testes não são somente sobre encontrar bugs, mas sobre construir sistemas confiáveis e times que dormem tranquilos.
+            I believe great testing isn't just about finding bugs — it's about building reliable systems and helping teams sleep at night.
           </p>
         </div>
         <div class="about-facts">
           <div class="fact">
             <div class="fact-number">3+</div>
-            <div class="fact-label">Anos de experiência em QA</div>
+            <div class="fact-label">Years of QA experience</div>
           </div>
           <div class="fact">
             <div class="fact-number">350+</div>
-            <div class="fact-label">Testes automatizados escritos</div>
+            <div class="fact-label">Automated tests written</div>
           </div>
           <div class="fact">
             <div class="fact-number">95%</div>
-            <div class="fact-label">Taxa de aprovação nos testes E2E</div>
+            <div class="fact-label">E2E test pass rate</div>
           </div>
         </div>
       </div>
@@ -755,11 +810,11 @@
 
     <!-- SKILLS -->
     <section id="skills">
-      <p class="section-label">Habilidades</p>
+      <p class="section-label">Skills</p>
       <div class="skills-grid">
 
         <div class="skill-group">
-          <h3>Automação — dia a dia</h3>
+          <h3>Automation — day to day</h3>
           <div class="tags">
             <span class="tag tag-highlight">Cypress</span>
             <span class="tag tag-highlight">Playwright</span>
@@ -769,7 +824,7 @@
         </div>
 
         <div class="skill-group">
-          <h3>Linguagens</h3>
+          <h3>Languages</h3>
           <div class="tags">
             <span class="tag">JavaScript</span>
             <span class="tag">TypeScript</span>
@@ -789,7 +844,7 @@
         </div>
 
         <div class="skill-group">
-          <h3>Metodologias</h3>
+          <h3>Methodologies</h3>
           <div class="tags">
             <span class="tag">Scrum</span>
             <span class="tag">BDD</span>
@@ -799,21 +854,21 @@
         </div>
 
         <div class="skill-group">
-          <h3>Tipos de Teste</h3>
+          <h3>Test Types</h3>
           <div class="tags">
             <span class="tag">E2E</span>
-            <span class="tag">Regressão</span>
-            <span class="tag">Exploratório</span>
+            <span class="tag">Regression</span>
+            <span class="tag">Exploratory</span>
             <span class="tag">API</span>
             <span class="tag">Smoke</span>
           </div>
         </div>
 
         <div class="skill-group">
-          <h3>Banco de Dados</h3>
+          <h3>Database</h3>
           <div class="tags">
             <span class="tag">SQL</span>
-            <span class="tag">Validação de dados</span>
+            <span class="tag">Data Validation</span>
             <span class="tag">JSON Schema</span>
           </div>
         </div>
@@ -821,21 +876,21 @@
       </div>
     </section>
 
-    <!-- EXPERIÊNCIA -->
+    <!-- EXPERIENCE -->
     <section id="experiencia">
-      <p class="section-label">Experiência</p>
+      <p class="section-label">Experience</p>
       <div class="timeline">
 
         <!-- ── meutudo. ── -->
         <div class="tl-company">
           <div class="tl-left">
-            <div class="tl-logo">t</div>
+            <div class="tl-logo" style="padding:0;overflow:hidden;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4zv4_ifneiYDqofrAReurZpZKDlMZvBSmiw&s" alt="meutudo." style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             <div class="tl-line"></div>
           </div>
           <div class="tl-right">
             <div class="tl-company-header">
               <div class="tl-company-name">meutudo.</div>
-              <div class="tl-company-meta">1 ano e 7 meses</div>
+              <div class="tl-company-meta">1 yr 7 mos</div>
             </div>
 
             <div class="tl-roles">
@@ -849,16 +904,16 @@
                 <div class="tl-role-content">
                   <div class="tl-role-header">
                     <div class="tl-role-title">Software Engineer in Test</div>
-                    <div class="tl-role-period">Jan 2025 — Presente · 1 a 4 m</div>
+                    <div class="tl-role-period">Jan 2025 — Present · 1 yr 4 mos</div>
                   </div>
                   <div class="tl-role-meta">
                     Full-time <span class="tl-sep">·</span> Remote <span class="tl-sep">·</span> Fortaleza, CE
                   </div>
                   <ul class="tl-bullets">
-                    <li>150+ testes automatizados com Cypress e Playwright, atingindo 95% de taxa de aprovação em cenários E2E e integração.</li>
-                    <li>Automação de API com Postman, validando regras de negócio e tratamento de erros em 30+ endpoints.</li>
-                    <li>Shift-left testing em sprints Agile, colaborando com devs para reduzir bugs em produção em 15%.</li>
-                    <li>Portal de dados de teste que reduziu o tempo de preparação em 60%, melhorando eficiência do time.</li>
+                    <li>Built and maintained 150+ automated tests with Cypress and Playwright, achieving 95% pass rate across E2E and integration scenarios.</li>
+                    <li>API test automation with Postman, validating business rules and error handling across 30+ endpoints.</li>
+                    <li>Applied shift-left testing in Agile sprints, collaborating with developers to reduce production bugs by 15%.</li>
+                    <li>Proposed and launched a test data portal that cut data preparation time by 60%, improving team efficiency and test reliability.</li>
                   </ul>
                 </div>
               </div>
@@ -872,15 +927,15 @@
                 <div class="tl-role-content">
                   <div class="tl-role-header">
                     <div class="tl-role-title">QA Engineer</div>
-                    <div class="tl-role-period">Out 2024 — Jan 2025 · 4 m</div>
+                    <div class="tl-role-period">Oct 2024 — Jan 2025 · 4 mos</div>
                   </div>
                   <div class="tl-role-meta">
                     Full-time <span class="tl-sep">·</span> Remote <span class="tl-sep">·</span> Fortaleza, CE
                   </div>
                   <ul class="tl-bullets">
-                    <li>Testes E2E e de integração com Cypress e Playwright, garantindo qualidade em releases contínuos.</li>
-                    <li>Testes de API com Postman para validação de contratos e comportamentos de erro.</li>
-                    <li>Colaboração direta com produto e engenharia no processo de QA shift-left.</li>
+                    <li>E2E and integration testing with Cypress and Playwright, ensuring quality across continuous releases.</li>
+                    <li>API testing with Postman for contract validation and error behavior coverage.</li>
+                    <li>Direct collaboration with product and engineering teams in a QA shift-left process.</li>
                   </ul>
                 </div>
               </div>
@@ -892,13 +947,13 @@
         <!-- ── Agenda Assessoria ── -->
         <div class="tl-company">
           <div class="tl-left">
-            <div class="tl-logo" style="background:#1a2a6c;color:white;font-size:13px;">AA</div>
+            <div class="tl-logo" style="padding:0;overflow:hidden;"><img src="https://media.glassdoor.com/sqll/2667223/agenda-assessoria-squarelogo-1680525925307.png" alt="Agenda Assessoria" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             <div class="tl-line"></div>
           </div>
           <div class="tl-right">
             <div class="tl-company-header">
               <div class="tl-company-name">Agenda Assessoria</div>
-              <div class="tl-company-meta">1 ano e 7 meses</div>
+              <div class="tl-company-meta">1 yr 7 mos</div>
             </div>
 
             <div class="tl-roles">
@@ -912,17 +967,17 @@
                 <div class="tl-role-content">
                   <div class="tl-role-header">
                     <div class="tl-role-title">QA Engineer</div>
-                    <div class="tl-role-period">Abr 2023 — Out 2024 · 1 a 7 m</div>
+                    <div class="tl-role-period">Apr 2023 — Oct 2024 · 1 yr 7 mos</div>
                   </div>
                   <div class="tl-role-meta">
                     Full-time <span class="tl-sep">·</span> On-site <span class="tl-sep">·</span> Cuiabá, MT
                   </div>
                   <ul class="tl-bullets">
-                    <li>Testes exploratórios, regressão, smoke e UAT em 5+ sistemas internos, garantindo qualidade nas entregas.</li>
-                    <li>Framework Cypress que aumentou a cobertura de regressão de 20% para 70%.</li>
-                    <li>200+ casos de teste e documentação de QA alinhada aos requisitos de negócio.</li>
-                    <li>Testes de API e validação SQL, identificando 40+ defeitos críticos antes da produção.</li>
-                    <li>Gestão de defeitos no Azure DevOps, reduzindo tempo médio de resolução em 30%.</li>
+                    <li>Conducted exploratory, regression, smoke, and UAT testing across 5+ internal systems, ensuring release quality.</li>
+                    <li>Designed and implemented a Cypress automation framework, increasing regression coverage from 20% to 70%.</li>
+                    <li>Created and maintained 200+ test cases and QA documentation aligned with business requirements.</li>
+                    <li>Performed API testing and SQL database validation, identifying 40+ critical defects before production.</li>
+                    <li>Managed defect lifecycle in Azure DevOps, reducing average bug resolution time by 30%.</li>
                   </ul>
                 </div>
               </div>
@@ -936,7 +991,7 @@
                 <div class="tl-role-content">
                   <div class="tl-role-header">
                     <div class="tl-role-title">Product Designer</div>
-                    <div class="tl-role-period">Set 2023 — Jun 2024 · 10 m</div>
+                    <div class="tl-role-period">Sep 2023 — Jun 2024 · 10 mos</div>
                   </div>
                   <div class="tl-role-meta">
                     Full-time <span class="tl-sep">·</span> On-site <span class="tl-sep">·</span> Cuiabá, MT
@@ -951,16 +1006,16 @@
       </div>
     </section>
 
-    <!-- PROJETOS -->
+    <!-- PROJECTS -->
     <section id="projetos">
-      <p class="section-label">Projetos</p>
+      <p class="section-label">Projects</p>
       <div class="projects-list">
 
         <div class="project-item">
           <div>
-            <div class="project-title">Framework de Automação E2E</div>
+            <div class="project-title">E2E Automation Framework</div>
             <div class="project-desc">
-              Framework de testes end-to-end com Playwright e TypeScript, cobrindo fluxos críticos de uma aplicação web de e-commerce. Integrado ao GitHub Actions com relatórios automáticos no Allure.
+              End-to-end test framework built with Playwright and TypeScript, covering critical flows of an e-commerce web app. Integrated with GitHub Actions and automatic Allure reports.
             </div>
             <div class="project-tags">
               <span class="project-tag">Playwright</span>
@@ -969,16 +1024,16 @@
               <span class="project-tag">Allure</span>
             </div>
           </div>
-          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
-            Ver projeto →
+          <a href="https://github.com/RavelMedeiros" class="project-link" target="_blank">
+            View project →
           </a>
         </div>
 
         <div class="project-item">
           <div>
-            <div class="project-title">Testes de API com Postman + Newman</div>
+            <div class="project-title">API Testing with Postman + Newman</div>
             <div class="project-desc">
-              Suíte de testes para uma API REST com mais de 200 casos de teste, validação de contratos com JSON Schema e execução automatizada no pipeline de CI. Cobertura de endpoints críticos, autenticação e tratamento de erros.
+              Test suite for a REST API with 200+ test cases, JSON Schema contract validation, and automated CI pipeline execution. Coverage of critical endpoints, authentication, and error handling.
             </div>
             <div class="project-tags">
               <span class="project-tag">Postman</span>
@@ -987,16 +1042,16 @@
               <span class="project-tag">Jenkins</span>
             </div>
           </div>
-          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
-            Ver projeto →
+          <a href="https://github.com/RavelMedeiros" class="project-link" target="_blank">
+            View project →
           </a>
         </div>
 
         <div class="project-item">
           <div>
-            <div class="project-title">Testes de Performance com K6</div>
+            <div class="project-title">Performance Testing with K6</div>
             <div class="project-desc">
-              Scripts de carga e stress testing para identificar gargalos em uma aplicação SaaS. Simulação de até 5.000 usuários simultâneos com relatórios de latência, throughput e percentis de resposta.
+              Load and stress testing scripts to identify bottlenecks in a SaaS application. Simulated up to 5,000 concurrent users with latency, throughput, and response percentile reports.
             </div>
             <div class="project-tags">
               <span class="project-tag">K6</span>
@@ -1005,16 +1060,16 @@
               <span class="project-tag">InfluxDB</span>
             </div>
           </div>
-          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
-            Ver projeto →
+          <a href="https://github.com/RavelMedeiros" class="project-link" target="_blank">
+            View project →
           </a>
         </div>
 
         <div class="project-item">
           <div>
-            <div class="project-title">Automação Mobile com Appium</div>
+            <div class="project-title">Mobile Automation with Appium</div>
             <div class="project-desc">
-              Suite de testes automatizados para aplicativo móvel iOS e Android usando Appium + Python. Cobertura dos principais fluxos de onboarding, checkout e perfil de usuário.
+              Automated test suite for iOS and Android mobile apps using Appium + Python. Coverage of key flows including onboarding, checkout, and user profile.
             </div>
             <div class="project-tags">
               <span class="project-tag">Appium</span>
@@ -1023,25 +1078,27 @@
               <span class="project-tag">Android</span>
             </div>
           </div>
-          <a href="https://github.com/ravelvieira" class="project-link" target="_blank">
-            Ver projeto →
+          <a href="https://github.com/RavelMedeiros" class="project-link" target="_blank">
+            View project →
           </a>
         </div>
 
       </div>
     </section>
 
-    <!-- CONTATO -->
+    <!-- CONTACT -->
     <section id="contato">
-      <p class="section-label">Contato</p>
+      <p class="section-label">Contact</p>
       <p class="contact-intro">
-        Aberto a conversas sobre novas oportunidades, projetos freelance ou colaborações. Fique à vontade para entrar em contato.
+        Open to conversations about new opportunities, freelance projects, or collaborations. Feel free to reach out.
       </p>
       <div class="contact-links">
 
         <a href="mailto:ravel.medeiro@gmail.com" class="contact-item">
           <div class="contact-left">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
             <div>
               <div class="contact-label">E-mail</div>
               <div class="contact-value">ravel.medeiro@gmail.com</div>
@@ -1052,7 +1109,9 @@
 
         <a href="https://www.linkedin.com/in/ravel-medeiros/" class="contact-item" target="_blank">
           <div class="contact-left">
-            <div class="contact-icon">💼</div>
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
             <div>
               <div class="contact-label">LinkedIn</div>
               <div class="contact-value">linkedin.com/in/ravel-medeiros</div>
@@ -1063,7 +1122,9 @@
 
         <a href="https://github.com/RavelMedeiros" class="contact-item" target="_blank">
           <div class="contact-left">
-            <div class="contact-icon">🐙</div>
+            <div class="contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            </div>
             <div>
               <div class="contact-label">GitHub</div>
               <div class="contact-value">github.com/RavelMedeiros</div>
@@ -1078,9 +1139,49 @@
   </main>
 
   <footer>
-    <span>© 2026 Ravel Vieira</span>
+    <span>© 2026 Ravel Medeiros</span>
     <span>QA Engineer</span>
   </footer>
 
+  <script>
+    // 🥚 Easter egg
+    const egg = [
+      '%c',
+      '██████╗  █████╗ ██╗   ██╗███████╗██╗',
+      '██╔══██╗██╔══██╗██║   ██║██╔════╝██║',
+      '██████╔╝███████║██║   ██║█████╗  ██║',
+      '██╔══██╗██╔══██║╚██╗ ██╔╝██╔══╝  ██║',
+      '██║  ██║██║  ██║ ╚████╔╝ ███████╗███████╗',
+      '╚═╝  ╚═╝╚═╝  ╚═╝  ╚═══╝  ╚══════╝╚══════╝',
+      '',
+      '👀 Oh hey, a curious dev!',
+      '',
+      '✅ No bugs here. I already tested this page.',
+      '🧪 Cypress + Playwright approved.',
+      '',
+      '📬 Want to work together?',
+      '   ravel.medeiro@gmail.com',
+      '   linkedin.com/in/ravel-medeiros',
+    ].join('\n');
+
+    console.log(
+      egg,
+      'color: #22c55e; font-family: monospace; font-size: 11px; line-height: 1.4;'
+    );
+
+    console.log('%c🚀 P.S. — You\'re looking at your next QA Engineer.', 'color: #888; font-style: italic; font-size: 12px;');
+
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    // Respect system preference on first load
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      html.classList.add('dark');
+    }
+
+    toggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+    });
+  </script>
 </body>
 </html>
